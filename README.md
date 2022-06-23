@@ -6,8 +6,7 @@
 
 ## Show Rank
 
-[Github](https://github.com/Oein/JungolExtensions/tree/main/JungolRankExtension)
-You can download an extension from gituhb to show ranks on jungol.co.kr
+You can download an extension from [Oein/JungolExtensions/JungolRankExtension](https://github.com/Oein/JungolExtensions/tree/main/JungolRankExtension) to show ranks on jungol.co.kr
 
 ## Vote Rank
 
