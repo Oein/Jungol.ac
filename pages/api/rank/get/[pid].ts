@@ -6,8 +6,7 @@ const prisma = new PrismaClient();
 const ranks = require("./../../../../rank.json");
 
 type Data = {
-  ProblemRank: string;
-  ProblemName: string;
+  ProblemRank: number;
 };
 
 export default async function handler(
@@ -16,6 +15,24 @@ export default async function handler(
 ) {
   let { pid } = req.query;
   pid = pid.toString();
+  if (ranks[pid] == undefined) {
+    res.end("No problem found");
+  }
   const dbKey = ranks[pid] + " # " + pid;
-  res.status(200).json({ ProblemRank: "", ProblemName: "" });
+  const data = await prisma.problemVote.findFirst({
+    where: {
+      name: dbKey,
+    },
+  });
+  const votes = data?.ranks as { [key: number]: number };
+  let allC = 0;
+  let cont = 0;
+  for (let i = 0; i <= 30; i++) {
+    allC += votes[i] * i;
+    cont += votes[i];
+  }
+  if (cont == 0) cont = 1;
+  allC /= cont;
+  allC = Math.round(allC);
+  res.status(200).json({ ProblemRank: allC });
 }
