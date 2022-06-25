@@ -42,7 +42,7 @@ const Home: NextPage = () => {
           marginTop: "70px",
         }}
       >
-        <h1>Jungol.ac</h1>
+        <h1>Jungol.ml</h1>
         <h3>우리들이 생각하는 문제 난이도</h3>
       </header>
       <section>
