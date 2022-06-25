@@ -4,6 +4,7 @@ import { AiOutlineGithub } from "react-icons/ai";
 import { useState } from "react";
 import Link from "next/link";
 import CustomHeader from "../components/header";
+import Head from "next/head";
 
 const problems = require("./../rank.json");
 const problemKey = Object.keys(problems);
@@ -71,6 +72,9 @@ const Home: NextPage = () => {
   };
   return (
     <>
+      <Head>
+        <title>Jungoler | Main</title>
+      </Head>
       <CustomHeader />
       <header
         className={style.header}

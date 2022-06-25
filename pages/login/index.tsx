@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
 import SHA3 from "crypto-js/sha3";
+import Head from "next/head";
 
 export default function Login() {
   const router = useRouter();
@@ -65,6 +66,9 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>Jungoler | Login</title>
+      </Head>
       {loggingin ? <Load /> : null}
       <header
         style={{
@@ -76,7 +80,7 @@ export default function Login() {
             marginBottom: "0px",
           }}
         >
-          Login to Jungol.ac
+          Login to Jungoler
         </h1>
         <h3
           style={{

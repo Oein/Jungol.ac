@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Load from "../../components/loading";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Head from "next/head";
 
 const problems = require("./../../rank.json");
 const problemKey = Object.keys(problems);
@@ -112,6 +113,11 @@ export default function Vote() {
 
   return (
     <>
+      <Head>
+        <title>
+          Jungoler | Vote | {problems[idx as any]} # {idx}
+        </title>
+      </Head>
       {voting ? <Load /> : null}
       <header
         style={{
