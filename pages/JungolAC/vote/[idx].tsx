@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Load from "../../components/loading";
+import Load from "../../../components/loading";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Head from "next/head";
 
-const problems = require("./../../rank.json");
+const problems = require("./../../../rank.json");
 const problemKey = Object.keys(problems);
 
 export default function Vote() {
@@ -97,12 +97,16 @@ export default function Vote() {
     setVoting(true);
     axios
       .get(
-        `/api/rank/vote/${idx}/${rank}/${localStorage.getItem("auth_token")}`
+        `/api/JungolAC/rank/vote/${idx}/${rank}/${localStorage.getItem(
+          "auth_token"
+        )}`
       )
       .then((d) => {
-        toast.success("Successfully voted!");
+        router.push("/JungolAC/");
+        toast.success("Successfully voted!", {
+          autoClose: 3000,
+        });
         setVoting(false);
-        router.push("/");
       });
   };
 
@@ -125,7 +129,7 @@ export default function Vote() {
         }}
       >
         <h1>
-          Vote rank to problem "{problems[idx as any]} # {idx}"
+          Vote rank to problem &quot;{problems[idx as any]} # {idx}&quot;
         </h1>
       </header>
 
@@ -142,6 +146,7 @@ export default function Vote() {
               display: "inline",
             }}
             src={RankImages[rank]}
+            alt={rank.toString()}
           />
           <h1
             style={{

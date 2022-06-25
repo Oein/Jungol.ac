@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-const ranks = require("./../../../../rank.json");
+const ranks = require("./../../../../../rank.json");
 
 type Data = {
   ProblemRank: number;

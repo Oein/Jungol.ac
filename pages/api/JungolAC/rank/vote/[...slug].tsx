@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-const ranksJSON = require("./../../../../rank.json");
+const ranksJSON = require("./../../../../../rank.json");
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,0 +1,25 @@
+.header {
+  align-items: center;
+  text-align: center;
+  padding: 35px;
+  position: relative;
+}
+
+.header::before {
+  content: "";
+  background: url("/logo.png");
+  background-size: cover;
+  opacity: 0.3;
+  position: absolute;
+  z-index: -10;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-position: center;
+  background-size: contain;
+}
+
+.header > * {
+  color: black;
+}
