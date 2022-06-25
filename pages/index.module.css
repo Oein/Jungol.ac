@@ -37,7 +37,7 @@
   color: black;
   border: none;
   font-size: large;
-  width: calc(100% - 20px);
+  width: calc(100% - 20px - 70px);
   max-width: 1000px;
   margin-left: 10px;
   margin-right: 10px;

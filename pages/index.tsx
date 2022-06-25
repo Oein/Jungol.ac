@@ -11,7 +11,22 @@ const problemKey = Object.keys(problems);
 const Home: NextPage = () => {
   let [searchvalue, setSearchValue] = useState("");
   let [searchAutoComplete, setSearchAC] = useState<any[]>([]);
-  const searchValueChangeHandler = (e: any) => {
+  let [maxCountOfSearchedProblems, setMaxCountOfSearchedProblems] = useState(5);
+
+  const onlyNumbers = (str: string) => {
+    return /^[0-9]+$/.test(str);
+  };
+
+  const searchMaxValueChangeHandler = (e: any) => {
+    setMaxCountOfSearchedProblems(e.target.value);
+    let someThing = { target: { value: searchvalue } };
+    searchValueChangeHandler(someThing, e.target.value as number);
+  };
+
+  const searchValueChangeHandler = (
+    e: any,
+    cnt: number = maxCountOfSearchedProblems
+  ) => {
     let data = e.target.value;
     setSearchValue(e.target.value);
     if (data.length === 0) {
@@ -21,7 +36,6 @@ const Home: NextPage = () => {
 
     let filterData: Object[] = [];
     problemKey.map((key, i) => {
-      if (filterData.length > 15) return 0;
       if ((problems[key] as string).toLocaleLowerCase().includes(data)) {
         filterData.push({ code: key, name: problems[key] as string });
       } else if (key.toString().startsWith(data.toString())) {
@@ -29,7 +43,29 @@ const Home: NextPage = () => {
       }
       return 0;
     });
-    filterData = filterData.slice(-7);
+    filterData.sort((a: any, b: any): number => {
+      if (a.code == data || a.name == data) {
+        return 1;
+      }
+      if (b.code == data || b.name == data) {
+        return 1;
+      }
+
+      if (onlyNumbers(data)) {
+        return (a.code as number) > (b.code as number) ? 1 : -1;
+      }
+
+      const ai = a.name.indexOf(data);
+      const bi = b.name.indexOf(data);
+      if (ai == bi) {
+        if (a.name.length == b.name.length) return a.code > b.code ? 1 : -1;
+        else return a.name.length > b.name.length ? 1 : 0;
+      } else {
+        return ai > bi ? 1 : -1;
+      }
+    });
+
+    filterData = filterData.slice(0, cnt);
 
     setSearchAC(filterData);
   };
@@ -66,6 +102,22 @@ const Home: NextPage = () => {
             className={style.searchInput}
             onChange={searchValueChangeHandler}
           />
+          <select
+            value={maxCountOfSearchedProblems}
+            onChange={searchMaxValueChangeHandler}
+            style={{
+              width: "50px",
+            }}
+          >
+            <optgroup label="검색되는 최대 문제수">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </optgroup>
+          </select>
           {searchAutoComplete.length > 0 ? (
             <table
               style={{
