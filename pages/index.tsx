@@ -3,6 +3,7 @@ import style from "./index.module.css";
 import { AiOutlineGithub } from "react-icons/ai";
 import { useState } from "react";
 import Link from "next/link";
+import CustomHeader from "../components/header";
 
 const problems = require("./../rank.json");
 const problemKey = Object.keys(problems);
@@ -34,7 +35,13 @@ const Home: NextPage = () => {
   };
   return (
     <>
-      <header className={style.header}>
+      <CustomHeader />
+      <header
+        className={style.header}
+        style={{
+          marginTop: "70px",
+        }}
+      >
         <h1>Jungol.ac</h1>
         <h3>우리들이 생각하는 문제 난이도</h3>
       </header>

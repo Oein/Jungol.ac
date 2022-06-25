@@ -10,4 +10,4 @@ You can download an extension from [Oein/JungolExtensions/JungolRankExtension](h
 
 ## Vote Rank
 
-Preparing...
+You can vote rank at [Jungol.ac](http://jungol-ac.vercel.app).

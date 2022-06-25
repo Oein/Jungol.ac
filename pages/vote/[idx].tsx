@@ -1,11 +1,16 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Load from "../../components/loading";
+import axios from "axios";
 
 const problems = require("./../../rank.json");
 const problemKey = Object.keys(problems);
 
 export default function Vote() {
   const router = useRouter();
+  const [rank, setRank] = useState<number>(15);
+  const [voting, setVoting] = useState<boolean>(false);
+
   const { idx } = router.query;
 
   if (!problemKey.includes(idx as string)) {
@@ -80,15 +85,24 @@ export default function Vote() {
     "Redstone 1",
   ];
 
-  let [rank, setRank] = useState<number>(15);
-
   const changeHandler = (e: any) => {
     let data = e.target.value;
     setRank(data);
   };
 
+  const voteHandler = (e: any) => {
+    if (voting) return;
+    setVoting(true);
+  };
+
+  if (window.localStorage.getItem("auth_token") == null) {
+    router.push("/login");
+    alert("Sorry, but you are not logged in.");
+  }
+
   return (
     <>
+      {voting ? <Load /> : null}
       <header
         style={{
           textAlign: "center",
@@ -152,6 +166,7 @@ export default function Vote() {
             fontWeight: "200",
             cursor: "pointer",
           }}
+          onClick={voteHandler}
         >
           Vote!
         </button>

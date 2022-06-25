@@ -12,6 +12,6 @@ datasource db {
 
 model ProblemVote {
   ranks Json
-  votedBy String[]
+  votedBy Json[]
   name String @id
 }
