@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Load from "../../components/loading";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const problems = require("./../../rank.json");
 const problemKey = Object.keys(problems);
@@ -93,6 +94,15 @@ export default function Vote() {
   const voteHandler = (e: any) => {
     if (voting) return;
     setVoting(true);
+    axios
+      .get(
+        `/api/rank/vote/${idx}/${rank}/${localStorage.getItem("auth_token")}`
+      )
+      .then((d) => {
+        toast.success("Successfully voted!");
+        setVoting(false);
+        router.push("/");
+      });
   };
 
   if (window.localStorage.getItem("auth_token") == null) {
