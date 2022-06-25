@@ -71,6 +71,7 @@ export default async function handler(
         },
       });
 
+      console.log(`Voted by ${auth} on ${dbKey} with rank ${rankJ}`);
       res.end("Voted!");
       resolve();
     }
