@@ -18,7 +18,7 @@ export default function CustomHeader() {
             cursor: "pointer",
           }}
         >
-          Jungol.ml
+          Jungoler
         </h1>
       </Link>
 
