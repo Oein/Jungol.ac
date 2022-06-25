@@ -1,4 +1,4 @@
-# Jungol.ac
+# Jungol.ml
 
 ## 우리들이 생각하는 문제 난이도 공유 서비스
 
@@ -10,4 +10,4 @@ You can download an extension from [Oein/JungolExtensions/JungolRankExtension](h
 
 ## Vote Rank
 
-You can vote rank at [Jungol.ac](http://jungol-ac.vercel.app).
+You can vote rank at [Jungol.ml](http://jungol.ml).
