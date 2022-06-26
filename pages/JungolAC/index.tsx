@@ -39,9 +39,18 @@ const Home: NextPage = () => {
 
     let filterData: Object[] = [];
     problemKey.map((key, i) => {
-      if ((problems[key] as string).toLocaleLowerCase().includes(data)) {
+      if (
+        (problems[key] as string)
+          .toLocaleLowerCase()
+          .includes(data.toLocaleLowerCase())
+      ) {
         filterData.push({ code: key, name: problems[key] as string });
-      } else if (key.toString().startsWith(data.toString())) {
+      } else if (
+        key
+          .toString()
+          .toLocaleLowerCase()
+          .startsWith(data.toString().toLocaleLowerCase())
+      ) {
         filterData.push({ code: key, name: problems[key] as string });
       }
       return 0;
