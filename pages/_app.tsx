@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { scaleDown as Menu } from "react-burger-menu";
 import Link from "next/link";
 import NoSSR from "react-no-ssr";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +21,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         overflow: "auto",
       }}
     >
+      <Head>
+        <meta name="author" content="Oein" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jungoler.vercel.app/" />
+        <meta property="og:site_name" content="Jungoler" />
+        <meta
+          property="description"
+          name="description"
+          content="Jungol.co.kr을 사용하는 사람들의 모임"
+        />
+        <meta
+          property="og:description"
+          content="Jungol.co.kr을 사용하는 사람들의 모임"
+        />
+      </Head>
       <Menu pageWrapId="page-warp" outerContainerId="outer-container">
         <NoSSR>
           <div
