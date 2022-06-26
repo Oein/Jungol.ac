@@ -13,8 +13,8 @@ export default function Login() {
 
       <section>
         <h2 className={style.title}>Description</h2>
-        This api is available for everyone. So you don't need to get things such
-        as api keys or token.
+        This api is available for everyone. So you don&apos;t need to get things
+        such as api keys or token.
       </section>
       <section>
         <h2 className={style.title}>Usage</h2>

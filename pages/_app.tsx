@@ -7,8 +7,17 @@ import { scaleDown as Menu } from "react-burger-menu";
 import Link from "next/link";
 import NoSSR from "react-no-ssr";
 import Head from "next/head";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  let [menuOpened, setMenuOpened] = useState(false);
+  const open = () => {
+    setMenuOpened(true);
+  };
+  const close = () => {
+    setMenuOpened(false);
+  };
+
   return (
     <div
       id="outer-container"
@@ -36,7 +45,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="Jungol.co.kr을 사용하는 사람들의 모임"
         />
       </Head>
-      <Menu pageWrapId="page-warp" outerContainerId="outer-container">
+      <Menu
+        pageWrapId="page-warp"
+        outerContainerId="outer-container"
+        isOpen={menuOpened}
+        onClose={() => {
+          close();
+        }}
+        onOpen={() => {
+          open();
+        }}
+      >
         <NoSSR>
           <div
             style={{
@@ -44,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               marginBottom: "14.720px",
             }}
           >
-            <a
+            <Link
               href={
                 typeof window !== "undefined" &&
                 localStorage.getItem("username") != null
@@ -59,6 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 style={{
                   cursor: "pointer",
                 }}
+                onClick={close}
               >
                 {typeof window !== "undefined" &&
                 localStorage.getItem("username") != null ? (
@@ -85,21 +105,30 @@ function MyApp({ Component, pageProps }: AppProps) {
                   "Login"
                 )}
               </div>
-            </a>
+            </Link>
           </div>
         </NoSSR>
-        <a href="/">
+        <Link href="/">
           <h1
             style={{
               margin: "0",
               padding: "0",
+              cursor: "pointer",
             }}
+            onClick={close}
           >
             Jungoler
           </h1>
-        </a>
-        <p>&nbsp;</p>
-        <a href="/JungolAC"> - Jungol.ac</a>
+        </Link>
+        <Link href="/JungolAC">
+          <div
+            onClick={close}
+            style={{ cursor: "pointer", padding: "0px", margin: "0px" }}
+          >
+            {" "}
+            - Jungol.ac
+          </div>
+        </Link>
         <p>&nbsp;</p>
         <h3
           style={{
@@ -109,7 +138,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         >
           Our OpenAPIs
         </h3>
-        <a href="/Docs/Login/"> - Login API</a>
+        <Link href="/Docs/Login/">
+          <div onClick={close} style={{ cursor: "pointer", padding: "0px" }}>
+            {" "}
+            - Login API
+          </div>
+        </Link>
       </Menu>
       <main id="page-warp">
         <div
