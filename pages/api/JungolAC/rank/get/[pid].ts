@@ -17,7 +17,7 @@ export default async function handler(
     let { pid } = req.query;
     pid = pid.toString();
     if (ranks[pid] == undefined) {
-      res.end("No problem found");
+      res.status(200).json({ ProblemRank: 0 });
     }
     const dbKey = ranks[pid] + " # " + pid;
     const data = await prisma.problemVote.findFirst({

@@ -26,13 +26,8 @@ export default async function handler(
       const rankJ = newSl[1];
       const auth = newSl[2];
 
-      if (auth.length != 128) {
-        res.redirect("/404");
-        resolve();
-      }
-
       if (ranksJSON[pid] == undefined) {
-        res.end("No problem found");
+        res.end(JSON.stringify({ State: "Fail" }));
         resolve();
       }
 
