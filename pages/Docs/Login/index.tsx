@@ -1,5 +1,6 @@
 import Head from "next/head";
-import FHeader from "../../../components/Fheader";
+import dynamic from "next/dynamic";
+const FHeader = dynamic(import("../../../components/Fheader"));
 import style from "./index.module.css";
 
 export default function Login() {

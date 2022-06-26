@@ -33,6 +33,19 @@
   display: inline;
 }
 
+.w50 {
+  width: 50px;
+}
+
+.tsty {
+  border-collapse: collapse;
+  width: calc(100% - 35px);
+  max-width: 1000px;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
 .searchInput {
   color: black;
   border: none;

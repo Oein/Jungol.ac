@@ -1,18 +1,20 @@
 import type { NextPage } from "next";
 import style from "./index.module.css";
-// import { AiOutlineGithub } from "react-icons/ai";
+import { AiOutlineGithub } from "react-icons/ai";
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import FHeader from "../../components/Fheader";
+import dynamic from "next/dynamic";
+const FHeader = dynamic(import("../../components/Fheader"));
 
 const problems = require("./../../rank.json");
-const problemKey = Object.keys(problems);
 
 const Home: NextPage = () => {
   let [searchvalue, setSearchValue] = useState("");
   let [searchAutoComplete, setSearchAC] = useState<any[]>([]);
   let [maxCountOfSearchedProblems, setMaxCountOfSearchedProblems] = useState(5);
+
+  const problemKey = Object.keys(problems);
 
   const onlyNumbers = (str: string) => {
     return /^[0-9]+$/.test(str);
@@ -83,7 +85,7 @@ const Home: NextPage = () => {
             href="https://github.com/Oein/JungolExtensions/tree/main/JungolRankExtension"
             className={style.dw}
           >
-            {/* <AiOutlineGithub size={"20"} /> */}
+            <AiOutlineGithub size={"20"} />
             <div>Download on Github</div>
           </a>
         </article>
@@ -100,9 +102,7 @@ const Home: NextPage = () => {
           <select
             value={maxCountOfSearchedProblems}
             onChange={searchMaxValueChangeHandler}
-            style={{
-              width: "50px",
-            }}
+            className={style.w50}
           >
             <optgroup label="검색되는 최대 문제수">
               <option value="5">5</option>
@@ -114,16 +114,7 @@ const Home: NextPage = () => {
             </optgroup>
           </select>
           {searchAutoComplete.length > 0 ? (
-            <table
-              style={{
-                borderCollapse: "collapse",
-                width: "calc(100% - 35px)",
-                maxWidth: "1000px",
-                marginLeft: "15px",
-                marginTop: "5px",
-                marginBottom: "30px",
-              }}
-            >
+            <table className={style.tsty}>
               <tbody
                 style={{
                   width: "100%",
