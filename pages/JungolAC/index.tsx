@@ -100,8 +100,128 @@ const Home: NextPage = () => {
         </article>
       </section>
       <section>
-        <h2 className={style.title}>문제 난이도 기여</h2>
+        <h2 className={style.title}>문제 난이도 기여 가이드 라인</h2>
         <div className={style.search}>
+          <table className={style.tsty}>
+            <tbody
+              style={{
+                width: "100%",
+                paddingLeft: "10px",
+              }}
+            >
+              <tr className={[style.bd, style.trw].join(" ")}>
+                <td
+                  style={{
+                    width: "30%",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  랭크
+                </td>
+                <td
+                  style={{
+                    width: "70%",
+                  }}
+                >
+                  알고리즘
+                </td>
+              </tr>
+
+              <tr key={0}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Copper 5
+                  </td>
+                  <td>간단한 입출력, 사칙 연산</td>
+                </>
+              </tr>
+
+              <tr key={1}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Copper 4
+                  </td>
+                  <td>if, switch 등의 조건문</td>
+                </>
+              </tr>
+
+              <tr key={2}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Copper 3
+                  </td>
+                  <td>for, while 등의 반복문</td>
+                </>
+              </tr>
+
+              <tr key={3}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Copper 2
+                  </td>
+                  <td>1차원 배열, 문자열, 함수 사용</td>
+                </>
+              </tr>
+
+              <tr key={4}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Copper 1
+                  </td>
+                  <td>다차원 배열, 재귀 호출</td>
+                </>
+              </tr>
+
+              <tr key={5}>
+                <>
+                  <td
+                    style={{
+                      paddingLeft: "10px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    Silver 5
+                  </td>
+                  <td>각종 제곱 미만 시간 정렬 방법</td>
+                </>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section>
+        <h2 className={style.title}>문제 난이도 기여</h2>
+        <div
+          className={style.search}
+          style={{
+            marginBottom: "100px",
+          }}
+        >
           <input
             value={searchvalue}
             placeholder="문제 이름 or 문제 Code"
