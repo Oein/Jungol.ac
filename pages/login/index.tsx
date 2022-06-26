@@ -3,7 +3,6 @@ import Load from "../../components/loading";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
-import SHA3 from "crypto-js/sha3";
 import Head from "next/head";
 
 export default function Login() {
@@ -33,9 +32,27 @@ export default function Login() {
       let dta = id.charCodeAt(i % (id.length - 1));
       let dtb = pw.charCodeAt(i % (pw.length - 1));
       let dtc = dta + dtb;
-      tokens += (dtc * 2.9).toString(36);
+      tokens += Math.round(dtc * 2.987).toString(26);
     }
-    return SHA3(tokens).toString();
+    let nId = "";
+    let pls = 1;
+    for (let i = 0; i < id.length; i++) {
+      nId += id.charAt(i + pls);
+      console.log(i + pls);
+      if (pls == 1) pls = -1;
+      else pls = 1;
+    }
+
+    let nToken = "";
+    for (let i = 0; i < tokens.length; i++) {
+      nToken += tokens.charAt(i);
+      if (i < nId.length) {
+        nToken += nId.charAt(i);
+      }
+    }
+
+    nToken = nId.length.toString() + nToken;
+    return nToken;
   };
 
   const handleClick = async () => {
@@ -160,6 +177,8 @@ export default function Login() {
         >
           Login
         </button>
+
+        <button onClick={() => alert(toToken())} />
       </section>
     </>
   );
