@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function db() {
   for (let i = 0; i < rankKeys.length; i++) {
     const dbKey = rank[rankKeys[i]] + " # " + rankKeys[i];
-    prisma.problemVote
+    await prisma.problemVote
       .create({
         data: {
           ranks: {
@@ -47,7 +47,7 @@ async function db() {
         },
       })
       .then((v) => {
-        console.log("Inserted", dbKey);
+        console.log("Inserted", dbKey, i + 1, " / ", rankKeys.length);
       });
   }
 }
