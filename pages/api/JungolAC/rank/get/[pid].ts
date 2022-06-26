@@ -28,7 +28,7 @@ export default async function handler(
     const votes = data?.ranks as { [key: number]: number };
     let allC = 0;
     let cont = 0;
-    for (let i = 0; i <= 30; i++) {
+    for (let i = 1; i <= 30; i++) {
       allC += votes[i] * i;
       cont += votes[i];
     }
