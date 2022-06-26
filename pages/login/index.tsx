@@ -8,7 +8,7 @@ import Head from "next/head";
 
 export default function Login() {
   const router = useRouter();
-  const { url } = router.query;
+  const { url, t } = router.query;
   const [loggingin, setLoggingIn] = useState<boolean>(false);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -60,7 +60,13 @@ export default function Login() {
       localStorage.setItem("username", decodeURI(g.UserName));
       toast.success("Successfully logged in");
       if (url == undefined) router.push("/");
-      else router.push(decodeURI(url as string));
+      else {
+        if ((url as string).startsWith("/")) {
+          router.push(decodeURI(url as string));
+        } else {
+          router.push(decodeURI(url as string) + `?auth_token${toToken()}`);
+        }
+      }
     }
   };
 
@@ -80,7 +86,7 @@ export default function Login() {
             marginBottom: "0px",
           }}
         >
-          Login to Jungoler
+          Login to {t ? t : "Jungoler"}
         </h1>
         <h3
           style={{

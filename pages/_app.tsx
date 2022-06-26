@@ -100,6 +100,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         </a>
         <p>&nbsp;</p>
         <a href="/JungolAC"> - Jungol.ac</a>
+        <p>&nbsp;</p>
+        <h3
+          style={{
+            margin: "0",
+            padding: "0",
+          }}
+        >
+          Our OpenAPIs
+        </h3>
+        <a href="/Docs/Login/"> - Login API</a>
       </Menu>
       <main id="page-warp">
         <div
