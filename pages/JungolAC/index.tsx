@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import style from "./index.module.css";
-import { AiOutlineGithub } from "react-icons/ai";
+// import { AiOutlineGithub } from "react-icons/ai";
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
             href="https://github.com/Oein/JungolExtensions/tree/main/JungolRankExtension"
             className={style.dw}
           >
-            <AiOutlineGithub size={"20"} />
+            {/* <AiOutlineGithub size={"20"} /> */}
             <div>Download on Github</div>
           </a>
         </article>
