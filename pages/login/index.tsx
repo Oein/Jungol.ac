@@ -178,7 +178,7 @@ export default function Login() {
           Login
         </button>
 
-        <button onClick={() => alert(toToken())} />
+        {/* <button onClick={() => alert(toToken())} /> */}
       </section>
     </>
   );
