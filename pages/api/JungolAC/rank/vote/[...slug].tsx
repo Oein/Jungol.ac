@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import WebLog from "./../../../../../webhook/index";
 
 const ranksJSON = require("./../../../../../rank.json");
 
@@ -66,7 +67,26 @@ export default async function handler(
         },
       });
 
-      console.log(`Voted by ${auth} on ${dbKey} with rank ${rankJ}`);
+      let g = "";
+      for (let i = 0; i < auth.length; i++) {}
+
+      WebLog([
+        {
+          name: "Voted Problem",
+          value: dbKey,
+          inline: true,
+        },
+        {
+          name: "Rank",
+          value: rankJ,
+          inline: true,
+        },
+        {
+          name: "Time",
+          value: `${new Date().toString()}`,
+          inline: false,
+        },
+      ]);
       res.end("Voted!");
       resolve();
     }
