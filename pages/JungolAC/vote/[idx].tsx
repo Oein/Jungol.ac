@@ -72,6 +72,12 @@ export default function Vote() {
           autoClose: 3000,
         });
         setVoting(false);
+      })
+      .catch((err) => {
+        setVoting(false);
+        toast.error("An error occurred while voting..", {
+          autoClose: 3000,
+        });
       });
   };
 
