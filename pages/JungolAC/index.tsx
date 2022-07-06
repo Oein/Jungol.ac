@@ -99,6 +99,17 @@ const Home: NextPage = () => {
           </a>
         </article>
       </section>
+
+      <section>
+        <h2 className={style.title}>공지사항</h2>
+        <article>
+          여러분들이 투표한 내역은 서버에 기록됩니다.
+          <p></p>
+          서버 테러 , 문제의 실제 난이도와 매우 다른 난이도 기여를 할경우 사전
+          공고 없이 ban 당할 수 있습니다.
+        </article>
+      </section>
+
       <section>
         <h2 className={style.title}>문제 난이도 기여 가이드 라인</h2>
         <div className={style.search}>
