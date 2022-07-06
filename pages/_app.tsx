@@ -2,15 +2,19 @@ import type { AppProps } from "next/app";
 import "./Jua.css";
 import "./global.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { scaleDown as Menu } from "react-burger-menu";
 import Link from "next/link";
 import NoSSR from "react-no-ssr";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ErrorPage from "next/error";
+
+const bans: string[] = [];
 
 function MyApp({ Component, pageProps }: AppProps) {
   let [menuOpened, setMenuOpened] = useState(false);
+  let [banned, setBanned] = useState(false);
   const open = () => {
     setMenuOpened(true);
   };
@@ -18,7 +22,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     setMenuOpened(false);
   };
 
-  return (
+  const banPage = (
+    <>
+      <ToastContainer
+        closeOnClick={false}
+        closeButton={false}
+        autoClose={false}
+        position="bottom-left"
+      />
+      <ErrorPage statusCode={444} title={"You are banned from server!"} />
+    </>
+  );
+
+  const retu = (
     <div
       id="outer-container"
       style={{
@@ -161,6 +177,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       </main>
     </div>
   );
+
+  useEffect(() => {
+    let at = window.localStorage.getItem("auth_token");
+    if (at && bans.includes(at)) {
+      setBanned(true);
+      toast.error("You are banned from server!");
+    }
+  });
+
+  return banned ? banPage : retu;
 }
 
 export default MyApp;

@@ -29,7 +29,9 @@ export default async function handler(
       if (solvedAcLink[pid] != undefined) {
         axios
           .get(
-            `https://solved.ac/api/v3/problem/show?problemId=${solvedAcLink[pid]}`
+            `https://solved.ac/api/v3/problem/show?problemId=${
+              solvedAcLink[pid] as string
+            }`
           )
           .then((d) => {
             res.status(200).json({
