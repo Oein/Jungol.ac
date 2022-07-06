@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 const FHeader = dynamic(import("../../components/Fheader"));
 
 const problems = require("./../../rank.json");
+const sl = require("../../solvedaclink.json");
 
 const Home: NextPage = () => {
   let [searchvalue, setSearchValue] = useState("");
@@ -44,14 +45,18 @@ const Home: NextPage = () => {
           .toLocaleLowerCase()
           .includes(data.toLocaleLowerCase())
       ) {
-        filterData.push({ code: key, name: problems[key] as string });
+        if (sl[key] == undefined) {
+          filterData.push({ code: key, name: problems[key] as string });
+        }
       } else if (
         key
           .toString()
           .toLocaleLowerCase()
           .startsWith(data.toString().toLocaleLowerCase())
       ) {
-        filterData.push({ code: key, name: problems[key] as string });
+        if (sl[key] == undefined) {
+          filterData.push({ code: key, name: problems[key] as string });
+        }
       }
       return 0;
     });
