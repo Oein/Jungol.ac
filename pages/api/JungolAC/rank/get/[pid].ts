@@ -80,7 +80,7 @@ export default async function handler(
         resolve();
       }
     } catch {
-      res.status(200).json({ ProblemRank: -1 });
+      res.status(200).json({ ProblemRank: 0 });
       resolve();
     }
   });
