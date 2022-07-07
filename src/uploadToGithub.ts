@@ -4,7 +4,11 @@ const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
 
-export default async function UPLOAD(content: string, path: string) {
+export default async function UPLOAD(
+  content: string,
+  path: string,
+  branch: string = "main"
+) {
   const owner = "Oein";
   const repo = "Jungoler";
   const cnt = Buffer.from(content, "utf8").toString("base64");
@@ -42,5 +46,6 @@ export default async function UPLOAD(content: string, path: string) {
     },
     content: cnt,
     sha: file_sha,
+    branch: branch,
   });
 }
