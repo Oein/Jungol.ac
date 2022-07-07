@@ -18,6 +18,15 @@ export default async function handler(
   return new Promise<void>((resolve, reject) => {
     let { slug }: any = req.query;
     const newSl = slug as string[];
+
+    if (newSl.length == 2 && newSl[0] == "isAdmin") {
+      const at = process.env.ADMIN_TOKEN as string;
+      if (newSl[1] == at) {
+        res.end("T");
+      } else res.end("F");
+      resolve();
+    }
+
     if (newSl.length <= 1) {
       res.end(JSON.stringify({ State: "Fail" }));
       resolve();

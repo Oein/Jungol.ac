@@ -21,9 +21,10 @@ export default async function UPLOAD(
   ) => {
     try {
       const file = await sdk.rest.repos.getContent({
-        owner,
-        repo,
-        path,
+        owner: owner,
+        repo: repo,
+        path: path,
+        branch: branch,
       });
       const { sha } = file.data as any;
       return sha;
@@ -35,7 +36,7 @@ export default async function UPLOAD(
   // If the file already exists, you need to provide the sha in order to update the file content.
   const file_sha = await getFileShaIfExists(octokit, owner, repo, path);
 
-  await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
+  return octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
     owner: owner,
     repo: repo,
     path: path,

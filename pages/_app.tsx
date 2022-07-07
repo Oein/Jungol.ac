@@ -182,7 +182,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     let at = window.localStorage.getItem("auth_token");
     if (at && bans.includes(at)) {
       setBanned(true);
-      toast.error("You are banned from server!");
+      toast.error("You are banned from server");
     }
   });
 
