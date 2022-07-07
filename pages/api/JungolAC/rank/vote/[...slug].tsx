@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import WebLog from "./../../../../../webhook/index";
+import WebLog from "../../../../../modules/webhook";
 
 const ranksJSON = require("./../../../../../rank.json");
 
