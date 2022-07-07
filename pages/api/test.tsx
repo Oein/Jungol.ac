@@ -5,7 +5,5 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<void>
 ) {
-  return new Promise<void>((resolve, reject) => {
-    
-  });
+  return new Promise<void>((resolve, reject) => {});
 }
