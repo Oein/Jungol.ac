@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import ErrorPage from "next/error";
-<<<<<<< HEAD
-import { AiOutlineLink, AiOutlineDatabase } from "react-icons/ai";
-=======
 import { AiOutlineLink, AiOutlineUser } from "react-icons/ai";
->>>>>>> 13f1658 (?)
 import { Tooltip, Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import { IconType } from "react-icons";
@@ -18,13 +14,6 @@ interface SidePage {
 }
 
 export default function adminPanel() {
-<<<<<<< HEAD
-  let [admin, setIsAdmin] = useState(false);
-  let [focusedPage, setFocuse] = useState(0);
-  let [jungolC, setJC] = useState("");
-  let [acmC, setAC] = useState("");
-  let [l, sl] = useState(false);
-=======
   // Global
   let [admin, setIsAdmin] = useState(false);
   let [focusedPage, setFocuse] = useState(0);
@@ -34,7 +23,6 @@ export default function adminPanel() {
   let [acmC, setAC] = useState("");
   // Ban UnBan Page
   let [but, setBUT] = useState("");
->>>>>>> 13f1658 (?)
 
   const LinkProblemPage = (
     <>
@@ -105,8 +93,6 @@ export default function adminPanel() {
     </>
   );
 
-<<<<<<< HEAD
-=======
   const BanUnBanPage = (
     <>
       <h1
@@ -207,7 +193,6 @@ export default function adminPanel() {
     </>
   );
 
->>>>>>> 13f1658 (?)
   const SidePages: SidePage[] = [
     {
       Icon: AiOutlineLink,
@@ -215,15 +200,9 @@ export default function adminPanel() {
       Name: "Link Jungol Rank To Solved.ac Rank",
     },
     {
-<<<<<<< HEAD
-      Icon: AiOutlineDatabase,
-      Page: <></>,
-      Name: "Database",
-=======
       Icon: AiOutlineUser,
       Page: BanUnBanPage,
       Name: "Ban/Unban User",
->>>>>>> 13f1658 (?)
     },
   ];
 

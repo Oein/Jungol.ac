@@ -11,11 +11,7 @@ import { useEffect, useState } from "react";
 import ErrorPage from "next/error";
 import axios from "axios";
 
-<<<<<<< HEAD
-const bans: string[] = [];
-=======
 const bans: string[] = require("../bans.json");
->>>>>>> 13f1658 (?)
 
 function MyApp({ Component, pageProps }: AppProps) {
   let [menuOpened, setMenuOpened] = useState(false);
