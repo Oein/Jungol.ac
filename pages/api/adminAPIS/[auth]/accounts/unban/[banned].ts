@@ -1,38 +1,39 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { rejects } from "assert";
 import type { NextApiRequest, NextApiResponse } from "next";
 import UPLOAD from "../../../../../../modules/uploadToGithub";
 
-let sal = require("../../../../../../solvedaclink.json");
+let banns: string[] = require("../../../../../../bans.json");
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<void>
 ) {
   return new Promise<void>((resolve, reject) => {
-    const { auth, f, t } = req.query;
+    let { auth, banned } = req.query;
     const at = process.env.ADMIN_TOKEN as string;
+    auth = auth as string;
+    banned = banned as string;
     if (auth == at) {
-      sal[f as string] = t as any as number;
-      // res.end(JSON.stringify(sal));
-      UPLOAD(JSON.stringify(sal) as string, "solvedaclink.json", "main")
-        .then((d) => {
-          res.end("T");
+      if (!banns.includes(banned)) {
+        res.status(200).end("A");
+        resolve();
+        return;
+      }
+
+      banns = banns.filter((b) => b != banned);
+
+      UPLOAD(JSON.stringify(banns), "bans.json", "main")
+        .then(() => {
+          res.status(200).end("T");
           resolve();
         })
         .catch((e) => {
-          console.error(e);
-          res.end("F");
+          res.status(401).end("E");
           resolve();
         });
-<<<<<<< HEAD
-    } else res.end("F");
-=======
     } else {
       res.status(404);
       resolve();
     }
->>>>>>> 13f1658 (?)
-    // res.end(`${auth} ${f} ${t}`);
   });
 }

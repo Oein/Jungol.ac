@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import ErrorPage from "next/error";
+<<<<<<< HEAD
 import { AiOutlineLink, AiOutlineDatabase } from "react-icons/ai";
+=======
+import { AiOutlineLink, AiOutlineUser } from "react-icons/ai";
+>>>>>>> 13f1658 (?)
 import { Tooltip, Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import { IconType } from "react-icons";
@@ -14,11 +18,23 @@ interface SidePage {
 }
 
 export default function adminPanel() {
+<<<<<<< HEAD
   let [admin, setIsAdmin] = useState(false);
   let [focusedPage, setFocuse] = useState(0);
   let [jungolC, setJC] = useState("");
   let [acmC, setAC] = useState("");
   let [l, sl] = useState(false);
+=======
+  // Global
+  let [admin, setIsAdmin] = useState(false);
+  let [focusedPage, setFocuse] = useState(0);
+  let [l, sl] = useState(false);
+  // Link Page
+  let [jungolC, setJC] = useState("");
+  let [acmC, setAC] = useState("");
+  // Ban UnBan Page
+  let [but, setBUT] = useState("");
+>>>>>>> 13f1658 (?)
 
   const LinkProblemPage = (
     <>
@@ -89,6 +105,109 @@ export default function adminPanel() {
     </>
   );
 
+<<<<<<< HEAD
+=======
+  const BanUnBanPage = (
+    <>
+      <h1
+        style={{
+          marginBottom: "40px",
+        }}
+      >
+        Ban / Unban User
+      </h1>
+      <Input
+        labelPlaceholder="User Auth"
+        value={but}
+        onChange={(e) => {
+          setBUT(e.target.value);
+        }}
+        style={{ display: "inline" }}
+      />
+      <Button
+        style={{ display: "inline", marginLeft: "10px" }}
+        color="warning"
+        auto
+        onClick={() => {
+          sl(true);
+          axios
+            .get(
+              `/api/adminAPIS/${window.localStorage.auth_token}/accounts/ban/${but}`
+            )
+            .then((res) => {
+              if (res.data == "A") {
+                toast("The user has already been banned", {
+                  type: "info",
+                });
+              }
+              if (res.data == "E") {
+                toast("Error occurred while trying to ban the user", {
+                  type: "error",
+                });
+              }
+              if (res.data == "T") {
+                toast("Successfully banned the user", {
+                  type: "success",
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              toast("Error occurred while trying to ban the user", {
+                type: "error",
+              });
+            })
+            .finally(() => {
+              sl(false);
+            });
+        }}
+      >
+        Ban
+      </Button>
+      <Button
+        style={{ display: "inline", marginLeft: "10px" }}
+        color="success"
+        auto
+        onClick={() => {
+          sl(true);
+          axios
+            .get(
+              `/api/adminAPIS/${window.localStorage.auth_token}/accounts/unban/${but}`
+            )
+            .then((res) => {
+              if (res.data == "A") {
+                toast("The user has already been unbanned", {
+                  type: "info",
+                });
+              }
+              if (res.data == "E") {
+                toast("Error occurred while trying to unban the user", {
+                  type: "error",
+                });
+              }
+              if (res.data == "T") {
+                toast("Successfully unbanned the user", {
+                  type: "success",
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              toast("Error occurred while trying to unban the user", {
+                type: "error",
+              });
+            })
+            .finally(() => {
+              sl(false);
+            });
+        }}
+      >
+        Unban
+      </Button>
+    </>
+  );
+
+>>>>>>> 13f1658 (?)
   const SidePages: SidePage[] = [
     {
       Icon: AiOutlineLink,
@@ -96,9 +215,15 @@ export default function adminPanel() {
       Name: "Link Jungol Rank To Solved.ac Rank",
     },
     {
+<<<<<<< HEAD
       Icon: AiOutlineDatabase,
       Page: <></>,
       Name: "Database",
+=======
+      Icon: AiOutlineUser,
+      Page: BanUnBanPage,
+      Name: "Ban/Unban User",
+>>>>>>> 13f1658 (?)
     },
   ];
 
