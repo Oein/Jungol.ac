@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ErrorPage from "next/error";
-import UPLOAD from "../../modules/uploadToGithub";
-import { AiOutlineLink } from "react-icons/ai";
+import { AiOutlineLink, AiOutlineDatabase } from "react-icons/ai";
 import { Tooltip, Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import { IconType } from "react-icons";
@@ -96,6 +95,11 @@ export default function adminPanel() {
       Page: LinkProblemPage,
       Name: "Link Jungol Rank To Solved.ac Rank",
     },
+    {
+      Icon: AiOutlineDatabase,
+      Page: <></>,
+      Name: "Database",
+    },
   ];
 
   useEffect(() => {
@@ -112,66 +116,58 @@ export default function adminPanel() {
   return (
     <>
       {admin ? (
-        <table
-          style={{
-            paddingLeft: "150px",
-            paddingRight: "50px",
-            paddingTop: "50px",
-          }}
-        >
-          <tr>
-            <td>
-              <table
-                style={{
-                  display: "inline",
-                  marginRight: "30px",
-                }}
-              >
-                {SidePages.map((sidePage, idx) => {
-                  return (
-                    <tr>
-                      <td
+        <>
+          <table
+            style={{
+              display: "inline",
+              position: "fixed",
+              top: "100px",
+              left: "100px",
+            }}
+          >
+            {SidePages.map((sidePage, idx) => {
+              return (
+                <tr>
+                  <td
+                    style={{
+                      backgroundColor: idx == focusedPage ? "black" : "white",
+                      borderRadius: "5px",
+                    }}
+                    onClick={() => {
+                      setFocuse(idx);
+                    }}
+                  >
+                    <Tooltip
+                      content={sidePage.Name}
+                      placement="top"
+                      rounded
+                      color="success"
+                    >
+                      <sidePage.Icon
+                        size={30}
+                        color={idx != focusedPage ? "black" : "white"}
                         style={{
-                          backgroundColor:
-                            idx == focusedPage ? "black" : "white",
-                          borderRadius: "5px",
+                          transform: "translateY(2.5px)",
+                          cursor: "pointer",
                         }}
-                        onClick={() => {
-                          setFocuse(idx);
-                        }}
-                      >
-                        <Tooltip
-                          content={sidePage.Name}
-                          placement="top"
-                          rounded
-                          color="success"
-                        >
-                          <sidePage.Icon
-                            size={30}
-                            color={idx != focusedPage ? "black" : "white"}
-                            style={{
-                              transform: "translateY(2.5px)",
-                              cursor: "pointer",
-                            }}
-                          />
-                        </Tooltip>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </table>
-            </td>
-            <tr>
-              <div
-                style={{
-                  display: "inline",
-                }}
-              >
-                {SidePages[focusedPage].Page}
-              </div>
-            </tr>
-          </tr>
-        </table>
+                      />
+                    </Tooltip>
+                  </td>
+                </tr>
+              );
+            })}
+          </table>
+          <div
+            style={{
+              display: "inline",
+              position: "fixed",
+              left: "200px",
+              top: "100px",
+            }}
+          >
+            {SidePages[focusedPage].Page}
+          </div>
+        </>
       ) : (
         <ErrorPage statusCode={404} title="This page could not be found" />
       )}
