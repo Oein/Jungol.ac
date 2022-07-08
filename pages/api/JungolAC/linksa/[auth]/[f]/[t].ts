@@ -25,14 +25,10 @@ export default async function handler(
           res.end("F");
           resolve();
         });
-<<<<<<< HEAD
-    } else res.end("F");
-=======
     } else {
       res.status(404);
       resolve();
     }
->>>>>>> 13f1658 (?)
     // res.end(`${auth} ${f} ${t}`);
   });
 }
