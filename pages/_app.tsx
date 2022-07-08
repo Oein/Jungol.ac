@@ -9,12 +9,26 @@ import NoSSR from "react-no-ssr";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import ErrorPage from "next/error";
+import axios from "axios";
 
 const bans: string[] = [];
 
 function MyApp({ Component, pageProps }: AppProps) {
   let [menuOpened, setMenuOpened] = useState(false);
   let [banned, setBanned] = useState(false);
+  let [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`/api/login/isAdmin/${window.localStorage.auth_token}`)
+      .then((res) => {
+        if (res.data == "T") {
+          setIsAdmin(true);
+        }
+      })
+      .catch((e) => {});
+  });
+
   const open = () => {
     setMenuOpened(true);
   };
@@ -124,42 +138,60 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Link>
           </div>
         </NoSSR>
-        <Link href="/">
-          <h1
+        <div
+          style={{
+            borderBottom: "1px solid gray",
+            marginBottom: "14.720px",
+            paddingBottom: "14.720px",
+          }}
+        >
+          <Link href="/">
+            <h1
+              style={{
+                margin: "0",
+                padding: "0",
+                cursor: "pointer",
+              }}
+              onClick={close}
+            >
+              Jungoler
+            </h1>
+          </Link>
+          <Link href="/JungolAC">
+            <div
+              onClick={close}
+              style={{ cursor: "pointer", padding: "0px", margin: "0px" }}
+            >
+              {" "}
+              - Jungol.ac
+            </div>
+          </Link>
+          <p>&nbsp;</p>
+          <h3
             style={{
               margin: "0",
               padding: "0",
-              cursor: "pointer",
             }}
-            onClick={close}
           >
-            Jungoler
-          </h1>
-        </Link>
-        <Link href="/JungolAC">
-          <div
-            onClick={close}
-            style={{ cursor: "pointer", padding: "0px", margin: "0px" }}
-          >
-            {" "}
-            - Jungol.ac
-          </div>
-        </Link>
-        <p>&nbsp;</p>
-        <h3
-          style={{
-            margin: "0",
-            padding: "0",
-          }}
-        >
-          Our OpenAPIs
-        </h3>
-        <Link href="/Docs/Login/">
-          <div onClick={close} style={{ cursor: "pointer", padding: "0px" }}>
-            {" "}
-            - Login API
-          </div>
-        </Link>
+            Our OpenAPIs
+          </h3>
+          <Link href="/Docs/Login/">
+            <div onClick={close} style={{ cursor: "pointer", padding: "0px" }}>
+              {" "}
+              - Login API
+            </div>
+          </Link>
+        </div>
+        {isAdmin ? (
+          <Link href="/admin/">
+            <h2
+              onClick={close}
+              style={{ cursor: "pointer", margin: "0", padding: "0" }}
+            >
+              Admin Panel
+            </h2>
+          </Link>
+        ) : null}
       </Menu>
       <main id="page-warp">
         <div
