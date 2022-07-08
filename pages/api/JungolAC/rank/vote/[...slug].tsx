@@ -10,7 +10,7 @@ export default async function handler(
   res: NextApiResponse<void>
 ) {
   return new Promise<void>(async (resolve, reject) => {
-    let { slug } = req.query;
+    let { slug, myThink } = req.query;
     const newSl = slug as string[];
     if (newSl.length <= 2) {
       res.end(JSON.stringify({ State: "Fail" }));
@@ -39,7 +39,11 @@ export default async function handler(
         },
       });
 
-      let votedBy = data?.votedBy as { auth: string; at: number }[];
+      let votedBy = data?.votedBy as {
+        auth: string;
+        at: number;
+        think: string | undefined;
+      }[];
       let ranks = data?.ranks as { [key: number]: number };
       let voter = -1;
       for (let i = 0; i < votedBy.length; i++) {
@@ -52,9 +56,14 @@ export default async function handler(
         ranks[me.at as number]--;
         ranks[rankJ as any as number]++;
         votedBy[voter].at = rankJ as any as number;
+        votedBy[voter].think = myThink ? (myThink as string) : "";
       } else {
         ranks[rankJ as any as number]++;
-        votedBy.push({ at: rankJ as any as number, auth: auth });
+        votedBy.push({
+          at: rankJ as any as number,
+          auth: auth,
+          think: myThink ? (myThink as string) : "",
+        });
       }
 
       await prisma.problemVote.update({
@@ -80,6 +89,11 @@ export default async function handler(
           name: "Rank",
           value: rankJ,
           inline: true,
+        },
+        {
+          name: "Think",
+          value: myThink as string,
+          inline: false,
         },
         {
           name: "Time",
