@@ -102,6 +102,14 @@ const Home: NextPage = () => {
             <AiOutlineGithub size={"20"} />
             <div>Download on Github</div>
           </a>
+          <p style={{ margin: "0px" }}></p>
+          <h4 style={{ margin: "0px", paddingLeft: "20px" }}>
+            뭘 다운로드 하는건가요?
+          </h4>
+          <p style={{ margin: "0px", paddingLeft: "20px" }}>
+            {"->"} Jungol.co.kr에 랭크를 표시하는 기능을 가진 Chrome Extension을
+            다운로드 하는겁니다!
+          </p>
         </article>
       </section>
 
