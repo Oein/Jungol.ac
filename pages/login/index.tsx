@@ -123,7 +123,7 @@ export default function Login() {
           placeholder="ID"
           style={{
             fontSize: "14px",
-            width: "80vw",
+            width: "90vw",
             maxWidth: "400px",
             padding: "4px 12px",
           }}
@@ -145,7 +145,7 @@ export default function Login() {
           placeholder="Password"
           style={{
             fontSize: "14px",
-            width: "80vw",
+            width: "90vw",
             maxWidth: "400px",
             padding: "4px 12px",
           }}
@@ -165,7 +165,7 @@ export default function Login() {
         <button
           style={{
             fontSize: "14px",
-            width: "80vw",
+            width: "90vw",
             maxWidth: "400px",
             padding: "4px 12px",
             borderRadius: "5px",
