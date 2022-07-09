@@ -212,7 +212,7 @@ export default function Vote() {
       <table
         style={{
           marginLeft: "10vw",
-          marginTop: "60px",
+          marginTop: "100px",
         }}
       >
         {thinks?.map((item, idx) => {
