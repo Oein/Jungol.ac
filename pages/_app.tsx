@@ -217,7 +217,26 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   });
 
-  return banned ? banPage : retu;
+  return (
+    <>
+      <div
+        style={{
+          position: "fixed",
+          top: "0",
+          left: "0",
+          right: "0",
+          textAlign: "center",
+          backgroundColor: "#000000",
+          color: "#FFFFFF",
+        }}
+      >
+        Alert : 샘들이 solved.ac랑 협업해서 rank기능을 만들고 있데요. solved.ac
+        업데이트 되면 이 사이트 폭⭐️8 식을 여러분들과 한컴 discord에서 진행할
+        겁니다.
+      </div>
+      {banned ? banPage : retu}
+    </>
+  );
 }
 
 export default MyApp;
